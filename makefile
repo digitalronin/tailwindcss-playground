@@ -15,3 +15,10 @@ shell: .built
 		-w /app \
 		-v $$(pwd):/app \
 		-it $(TAG) sh
+
+server: .built
+	docker run --rm \
+		-w /app \
+		-v $$(pwd):/app \
+		-p 3000:3000 \
+		$(TAG) npm run dev
