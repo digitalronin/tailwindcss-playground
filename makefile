@@ -4,12 +4,6 @@ TAG := tailwindcss-playground
 	docker build -t $(TAG) .
 	touch .built
 
-build: .built
-	docker run --rm \
-		-w /app \
-		-v $$(pwd):/app \
-		$(TAG) npx tailwindcss build -i css/tailwind.css -o build/tailwind.css
-
 shell: .built
 	docker run --rm \
 		-w /app \
@@ -18,7 +12,12 @@ shell: .built
 
 server: .built
 	docker run --rm \
+		--name web \
 		-w /app \
 		-v $$(pwd):/app \
 		-p 3000:3000 \
-		$(TAG) npm run dev
+		-e TAILWIND_OUTPUT_FILE=build/tailwind.css \
+		$(TAG) ./server.sh
+
+stop:
+	docker kill web
