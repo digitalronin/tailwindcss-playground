@@ -16,6 +16,7 @@ server: .built
 		-w /app \
 		-v $$(pwd):/app \
 		-p 3000:3000 \
+		-e TAILWIND_INPUT_FILE=css/tailwind.css \
 		-e TAILWIND_OUTPUT_FILE=build/tailwind.css \
 		$(TAG) ./server.sh
 

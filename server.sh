@@ -6,5 +6,5 @@
 
 set -euo pipefail
 
-npx tailwindcss -o $TAILWIND_OUTPUT_FILE --watch --poll &
+npx tailwindcss -i $TAILWIND_INPUT_FILE -o $TAILWIND_OUTPUT_FILE --watch --poll &
 npm run dev
